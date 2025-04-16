@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 
 
@@ -29,6 +30,15 @@ public class PlayerBehavior : MonoBehaviour
     private float hInput;
     private Rigidbody _rb;
     private CapsuleCollider _col;
+
+
+    [SerializeField] AudioMixerGroup audio_player;
+    [SerializeField] AudioMixerGroup audio_effect;
+
+    [SerializeField] AudioClip size_sound;
+    [SerializeField] AudioClip damage_sound;
+    [SerializeField] AudioClip health_sound;
+    [SerializeField] AudioClip avoid_sound;
 
     // Start is called before the first frame update
     void Start()
@@ -103,9 +113,14 @@ public class PlayerBehavior : MonoBehaviour
         if (bulletActive)
         {
 
-            GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
+            GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(2, 0, 0), this.transform.rotation) as GameObject;
             Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
             bulletRB.velocity = this.transform.forward * bulletSpeed;
+
+            var audio = GetComponent<AudioSource>();
+            audio.outputAudioMixerGroup = audio_player;
+            audio.Play();
+
             bulletActive = false;
 
         }
@@ -137,6 +152,11 @@ public class PlayerBehavior : MonoBehaviour
     public void SizeChange(float value)
     {
 
+        AudioClip clip = size_sound;
+        var audio = GetComponent<AudioSource>();
+        audio.outputAudioMixerGroup = audio_effect;
+        audio.PlayOneShot(clip);
+
         this.gameObject.transform.localScale = new Vector3(value, value, value);
         gameBehavior.Size = value;
 
@@ -145,12 +165,22 @@ public class PlayerBehavior : MonoBehaviour
     public void DamageChange(int value)
     {
 
+        AudioClip clip = damage_sound;
+        var audio = GetComponent<AudioSource>();
+        audio.outputAudioMixerGroup = audio_effect;
+        audio.PlayOneShot(clip);
+
         gameBehavior.Damage += value;
 
     }
 
     public void HealthChange(int value)
     {
+
+        AudioClip clip = health_sound;
+        var audio = GetComponent<AudioSource>();
+        audio.outputAudioMixerGroup = audio_effect;
+        audio.PlayOneShot(clip);
 
         gameBehavior.HP += value;
 
@@ -161,6 +191,12 @@ public class PlayerBehavior : MonoBehaviour
 
         Avoid = true;
         gameBehavior.Avoid = true;
+
+        AudioClip clip = avoid_sound;
+        var audio = GetComponent<AudioSource>();
+        audio.outputAudioMixerGroup = audio_effect;
+        audio.PlayOneShot(clip);
+
         Invoke("AvoidEnd", value);
 
     }

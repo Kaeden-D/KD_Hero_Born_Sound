@@ -16,6 +16,9 @@ public class EnemyBehavior : MonoBehaviour
     private int locationIndex = 0;
     private NavMeshAgent agent;
 
+    [SerializeField] AudioClip[] clips;
+    [SerializeField] AudioClip[] deaths;
+
     private int lives = 6;
     public int EnemyLives
     {
@@ -33,6 +36,10 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     drone.DestroyDrone();
                 }
+
+                AudioClip clip = deaths[UnityEngine.Random.Range(0, deaths.Length)];
+                GetComponent<AudioSource>().PlayOneShot(clip);
+
                 Destroy(this.gameObject);
                 Debug.Log("Enemy down.");
             }
@@ -138,6 +145,9 @@ public class EnemyBehavior : MonoBehaviour
         {
 
             LivesChange(-gameBehavior.Damage);
+
+            AudioClip clip = clips[UnityEngine.Random.Range(0, clips.Length)];
+            GetComponent<AudioSource>().PlayOneShot(clip);
 
             Debug.Log("Damage: " + gameBehavior.Damage +  "\nCritical hit!");
 

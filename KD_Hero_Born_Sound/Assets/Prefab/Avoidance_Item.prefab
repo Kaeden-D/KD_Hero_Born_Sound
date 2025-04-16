@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3224827310929174372}
   - component: {fileID: 4965726001614601969}
   - component: {fileID: 133228773980520445}
-  - component: {fileID: 4102954060724854819}
   - component: {fileID: 2072939701407341598}
   m_Layer: 0
   m_Name: Avoidance_Pickup
@@ -145,18 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
---- !u!114 &4102954060724854819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5461545824146336128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8067cc53a34714fa5020a78d609cd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2072939701407341598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,8 +4995,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1941152122211896160}
-  - component: {fileID: -1628081464624859883}
-  - component: {fileID: 3774216669930958617}
   m_Layer: 0
   m_Name: Avoidance_Item
   m_TagString: Untagged
@@ -5034,28 +5019,3 @@ Transform:
   - {fileID: 4548492439410837143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1628081464624859883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188685654803077180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9db745c4256921f4c9ee0d49978732de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3774216669930958617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6188685654803077180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 156511c849488d749be7226a5beab498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
