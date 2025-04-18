@@ -158,6 +158,8 @@ public class GameBehavior : MonoBehaviour, IManagerBehavior
     void Start()
     {
 
+        Time.timeScale = 1f;
+
         Items = Items;
         HP = HP;
         Size = Size;

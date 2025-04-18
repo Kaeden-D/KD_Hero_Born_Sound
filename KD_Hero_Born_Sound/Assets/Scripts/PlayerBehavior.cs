@@ -33,6 +33,11 @@ public class PlayerBehavior : MonoBehaviour
 
 
     [SerializeField] AudioMixerGroup audio_player;
+
+    [SerializeField] AudioClip player_jump;
+    [SerializeField] AudioClip player_shoot;
+    [SerializeField] AudioClip hurt_sound;
+
     [SerializeField] AudioMixerGroup audio_effect;
 
     [SerializeField] AudioClip size_sound;
@@ -105,6 +110,11 @@ public class PlayerBehavior : MonoBehaviour
         {
 
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+
+            var audio = GetComponent<AudioSource>();
+            audio.outputAudioMixerGroup = audio_player;
+            audio.PlayOneShot(player_jump);
+
             jumpActive = false;
             playerJump();
 
@@ -119,7 +129,7 @@ public class PlayerBehavior : MonoBehaviour
 
             var audio = GetComponent<AudioSource>();
             audio.outputAudioMixerGroup = audio_player;
-            audio.Play();
+            audio.PlayOneShot(player_shoot);
 
             bulletActive = false;
 
@@ -179,7 +189,18 @@ public class PlayerBehavior : MonoBehaviour
 
         AudioClip clip = health_sound;
         var audio = GetComponent<AudioSource>();
-        audio.outputAudioMixerGroup = audio_effect;
+
+        if (value > 0)
+        {
+            clip = health_sound;
+            audio.outputAudioMixerGroup = audio_effect;
+        }
+        else if(value < 0)
+        {
+            clip = hurt_sound;
+            audio.outputAudioMixerGroup = audio_player;
+        }
+        
         audio.PlayOneShot(clip);
 
         gameBehavior.HP += value;

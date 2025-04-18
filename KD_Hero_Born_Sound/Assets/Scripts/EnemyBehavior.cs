@@ -37,14 +37,24 @@ public class EnemyBehavior : MonoBehaviour
                     drone.DestroyDrone();
                 }
 
-                AudioClip clip = deaths[UnityEngine.Random.Range(0, deaths.Length)];
-                GetComponent<AudioSource>().PlayOneShot(clip);
+                death_sound();
 
                 Destroy(this.gameObject);
                 Debug.Log("Enemy down.");
             }
 
         }
+
+    }
+    
+    //Note, this does not work, why?, I don't know
+    IEnumerator death_sound()
+    {
+
+        yield return new WaitForSeconds(.1f);
+        AudioClip clip = deaths[UnityEngine.Random.Range(0, deaths.Length)];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+        GetComponent<AudioSource>().Play();
 
     }
 
